@@ -1,1 +1,10 @@
-<h1>Books will eventually be put here</h1>
+<%= link_to 'Book Index', root_path, class: 'navbar-brand' %>
+<%= link_to 'Add a book', new_book_path, class: 'nav-link' %>
+
+
+<% @books.each do |book| %>
+<div>
+  <h1><%= link_to book.title, book_path(book) %></h1>
+  <i><%= book.author %></i>
+</div>
+<% end %>
