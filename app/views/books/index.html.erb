@@ -1,10 +1,14 @@
-<%= link_to 'Book Index', root_path, class: 'navbar-brand' %>
-<%= link_to 'Add a book', new_book_path, class: 'nav-link' %>
-
-
+<% if @books.blank? %>
+  <h4>There are no books containing the term <%= params[:search] %>.</h4>
+  <% end %>
+<% else %>
 <% @books.each do |book| %>
 <div>
   <h1><%= link_to book.title, book_path(book) %></h1>
   <i><%= book.author %></i>
+  <br />
+  <i><%= book.year %></i>
 </div>
 <% end %>
+
+

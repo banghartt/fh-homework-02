@@ -9,6 +9,32 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <%= link_to 'Book Index', root_path, class: 'navbar-brand' %>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+          <li class="nav-item active">
+            <%= link_to 'Add a book', new_book_path, class: 'nav-link' %>
+          </li>
+        </ul>
+       
+       <%= form_tag(books_path, method: "get", id: 'search-form') do %>
+       <%= text_field_tag :search, params[:search], placeholder: "Search for a book" %>
+       <%= submit_tag "Search", :name => nil %>
+      <% end %>
+
+
+
+        </form>
+      </div>
+    </nav>
+
+
+
     <%= yield %>
   </body>
 </html>

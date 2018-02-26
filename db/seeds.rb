@@ -21,8 +21,13 @@
   'Law', 
 ]
 
+@book_types = [
+  'Nonfiction','Fiction','Young Adult', 'Religion, Myth, and Ritural','Best Sellers',
+]
+
 random_book_classification = @book_classification.sample
+random_book_type = @book_types.sample
 
 50.times do |book|
-  Book.create!(title: Faker::Book.title, author: Faker::Book.author, genre: Faker::Book.genre, classification: random_book_classification)
+  Book.create!(title: Faker::Book.title, author: Faker::Book.author, genre: Faker::Book.genre, classification: random_book_classification, type: random_book_type, year: Faker::Number.between(1750, 2018))
 end
