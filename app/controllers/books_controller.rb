@@ -2,27 +2,40 @@ class BooksController < ApplicationController
 
   def index
     if params[:search]
-        @books = Book.search(params[:search])
-      else
-        @books = Book.all
-  end 
-end
+      @books = Book.search(params[:search])
+    else
+      @books = Book.all
+    end 
+  end
 
   def new
     @book = Book.new
   end
 
   def create
-    Book.create(book_params)
-    redirect_to root_path
+    @book = Book.build(book_params)
+
+    if @book.save
+      redirect_to @book
+    else 
+      render :new
+    end
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
+
+    unless @book
+      redirect_to root_path
+    end
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
+
+    unless @book
+      redirect_to root_path
+    end
   end
 
   def update
@@ -35,15 +48,11 @@ end
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to root_path
-
   end
 
-
-
-
-
-private
+  private
+  
   def book_params
-  params.require(:book).permit(:title, :author, :genre, :classification)
+    params.require(:book).permit(:title, :author, :genre, :classification)
   end
 end
