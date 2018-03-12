@@ -5,7 +5,8 @@ class BooksController < ApplicationController
       @books = Book.search(params[:search])
     else
       @books = Book.all
-    end 
+    end
+      @author = Book.all.authors
   end
 
   def new
@@ -53,6 +54,6 @@ class BooksController < ApplicationController
   private
   
   def book_params
-    params.require(:book).permit(:title, :author, :genre, :classification)
+    params.require(:book).permit(:title, :genre, :classification)
   end
 end

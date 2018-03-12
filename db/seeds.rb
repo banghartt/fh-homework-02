@@ -7,8 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Book.destroy_all
+Author.destroy_all
 
-book_classification = [ 
+
+book_classifications = [ 
   'General Works', 
   'Philosophy, Psychology, Religion', 
   'History - Auxiliary Sciences', 
@@ -18,20 +20,57 @@ book_classification = [
   'Geography',
   'Anthropology', 
   'Recreation',
-  'Social Sciences',
-  'Political Science', 
-  'Law' 
+  'Social Sciences U',
+  'Political Science V', 
+  'Law Z - Bibliograpy and Library Science',
+  'Education',
+  'Music',
+  'Fine Arts',
+  'Language and Literature',
+  'Science',
+  'Medicine',
+  'Agriculture',
+  'Technology',
+  'Military',
+  'Naval Science',
+  'Bibliography and Library Science'
 ]
 
 book_types = [
-  'Nonfiction','Fiction','Young Adult', 'Religion, Myth, and Ritural','Best Sellers'
+  'Nonfiction','Fiction',
 ]
 
 50.times do |book|
-  Book.create!(title: Faker::Book.title, 
-              author: Faker::Book.author, 
+  Book.create!(title: Faker::Book.title,  
               genre: Faker::Book.genre, 
-              classification: book_classification.sample, 
+              classification: book_classifications.sample, 
               type: book_types.sample, 
               year: Faker::Number.between(1750, 2018))
 end
+  
+  books = Book.all
+
+
+25.times do |author|
+  Author.create!(first_name: Faker::Name.first_name,
+                  last_name: Faker::Name.last_name,
+                  age: Faker::Number.between(20,99))
+end
+
+  authors_id = Author.ids
+
+books.each do |book|
+    author_id = authors_id.sample
+    Authorship.create!(book_id: book.id,
+                    author_id: author_id)
+end
+
+
+
+
+
+
+
+  
+
+

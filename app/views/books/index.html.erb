@@ -4,9 +4,8 @@
 <% else %>
 <% @books.each do |book| %>
 <div>
-  <h1><%= link_to book.title, book_path(book) %></h1>
-  <i><%= book.author %></i>
-  <br />
+  <h1><%= link_to book.title , book_path(book) %></h1>
+  <i><%= book.authors.full_name %></i>
   <i><%= book.year %></i>
 </div>
 <% end %>

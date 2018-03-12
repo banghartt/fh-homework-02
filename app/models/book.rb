@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
-  has_and_belongs_to_many :authors
+  belongs_to :author
+  
   def self.search(search)
     where("title ILIKE ? OR 
       author ILIKE ? OR 
@@ -11,5 +12,7 @@ class Book < ApplicationRecord
       "%#{search}%", 
       "%#{search}%", 
       "%#{search}%")
+  
   end
+
 end
