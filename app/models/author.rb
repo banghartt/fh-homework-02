@@ -9,9 +9,8 @@ class Author < ApplicationRecord
     @last_name = last_name
     @age = age
   end
-  
 
-  def full_name
+  def self.full_name
     
      "#{self.first_name} #{self.last_name}"
 

@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
-  belongs_to :author
-  
+  has_many :authorships 
+  has_many :authors, through: :authorships
+
   def self.search(search)
     where("title ILIKE ? OR 
       author ILIKE ? OR 

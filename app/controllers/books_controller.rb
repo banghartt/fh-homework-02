@@ -6,8 +6,8 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-      @author = Book.all.authors
   end
+  
 
   def new
     @book = Book.new
